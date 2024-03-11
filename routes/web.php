@@ -20,9 +20,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/listing/{id}', function ($id) {
-    // dd(Listing::find($id));
+// Route::get('/listing/{id}', function ($id) {
+//     // dd(Listing::find($id));
+//     return view('listing', [
+//         'listing' => Listing::find($id)
+//     ]);
+// });
+
+// route model binding style
+Route::get('/listings/{listing}', function (Listing $listing) {
     return view('listing', [
-        'listing' => Listing::find($id)
+        'listing' => $listing
     ]);
 });
