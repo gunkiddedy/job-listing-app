@@ -1,6 +1,7 @@
-@extends('layout')
+{{-- @extends('layout') --}}
 
-@section('content')
+{{-- @section('content') --}}
+<x-layout>
     @include('partials._hero')
     @include('partials._search')
     <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
@@ -10,4 +11,5 @@
             @endforeach
         @endunless
     </div>
-@endsection
+</x-layout>
+{{-- @endsection --}}
