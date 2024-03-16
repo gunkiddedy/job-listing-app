@@ -12,7 +12,8 @@
             @csrf
             <div class="mb-6">
                 <label for="company" class="inline-block text-lg mb-2">Company Name</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company" />
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company"
+                    placeholder="Example: ZickLearn LTD" />
                 <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('company')
                         {{ $message }}
@@ -45,7 +46,7 @@
             <div class="mb-6">
                 <label for="email" class="inline-block text-lg mb-2">Contact Email</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="email"
-                    value="{{ old('email') }}" />
+                    value="{{ old('email') }}" placeholder="Example: example@gmail.com" />
                 <p class="text-red-500 text-xs error">
                     @error('email')
                         {{ $message }}
@@ -58,7 +59,7 @@
                     Website/Application URL
                 </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="website"
-                    value="{{ old('website') }}" />
+                    value="{{ old('website') }}" placeholder="Example: https://www.upwork.com" />
                 <p class="text-red-500 text-xs error">
                     @error('website')
                         {{ $message }}
@@ -90,8 +91,8 @@
                 <label for="description" class="inline-block text-lg mb-2">
                     Job Description
                 </label>
-                <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="10"
-                    placeholder="Include tasks, requirements, salary, etc" value="{{ old('description') }}"></textarea>
+                <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="5"
+                    placeholder="Include tasks, requirements, salary, etc">{{ old('description') }}</textarea>
                 <p class="text-red-500 text-xs error">
                     @error('description')
                         {{ $message }}
