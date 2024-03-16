@@ -84,7 +84,8 @@
                 <label for="logo" class="inline-block text-lg mb-2">
                     Company Logo
                 </label>
-                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
+                <input type="file" accept="image/png, image/jpeg" class="border border-gray-200 rounded p-2 w-full"
+                    name="logo" />
 
                 <p class="text-red-500 text-xs error">
                     @error('logo')
