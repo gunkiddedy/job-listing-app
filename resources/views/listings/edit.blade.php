@@ -1,19 +1,18 @@
 <x-layout>
-    {{-- custom component --}}
     <x-card class="bg-gray-50 border border-gray-200 p-10 rounded max-w-xl mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                Create a Gig
+                Edit {{ $listing->title }}
             </h2>
             <p class="mb-4">Post a gig to find a developer</p>
         </header>
-
-        <form method="POST" action="/listings" enctype="multipart/form-data">
+        <form method="POST" action="/listings/{{ $listing->id }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="mb-6">
                 <label for="company" class="inline-block text-lg mb-2">Company Name</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="company"
-                    placeholder="Example: ZickLearn LTD" />
+                    value="{{ $listing->company }}" />
                 <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('company')
                         {{ $message }}
@@ -24,8 +23,8 @@
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Job Title</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title"
-                    placeholder="Example: Senior Laravel Developer" value="{{ old('title') }}" />
-                <p class="text-red-500 text-xs error">
+                    placeholder="Example: Senior Laravel Developer" value="{{ $listing->title }}" />
+                <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('title')
                         {{ $message }}
                     @enderror
@@ -35,8 +34,8 @@
             <div class="mb-6">
                 <label for="location" class="inline-block text-lg mb-2">Job Location</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="location"
-                    placeholder="Example: Remote, Boston MA, etc" value="{{ old('location') }}" />
-                <p class="text-red-500 text-xs error">
+                    placeholder="Example: Remote, Boston MA, etc" value="{{ $listing->location }}" />
+                <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('location')
                         {{ $message }}
                     @enderror
@@ -46,8 +45,8 @@
             <div class="mb-6">
                 <label for="email" class="inline-block text-lg mb-2">Contact Email</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="email"
-                    value="{{ old('email') }}" placeholder="Example: example@gmail.com" />
-                <p class="text-red-500 text-xs error">
+                    value="{{ $listing->email }}" />
+                <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('email')
                         {{ $message }}
                     @enderror
@@ -59,8 +58,8 @@
                     Website/Application URL
                 </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="website"
-                    value="{{ old('website') }}" placeholder="Example: https://www.upwork.com" />
-                <p class="text-red-500 text-xs error">
+                    value="{{ $listing->website }}" />
+                <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('website')
                         {{ $message }}
                     @enderror
@@ -72,12 +71,7 @@
                     Tags (Comma Separated)
                 </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags"
-                    value="{{ old('tags') }}" placeholder="Example: Laravel, Backend, Postgres, etc" />
-                <p class="text-red-500 text-xs error">
-                    @error('tags')
-                        {{ $message }}
-                    @enderror
-                </p>
+                    placeholder="Example: Laravel, Backend, Postgres, etc" value="{{ $listing->tags }}" />
             </div>
 
             <div class="mb-6">
@@ -86,12 +80,11 @@
                 </label>
                 <input type="file" accept="image/png, image/jpeg" class="border border-gray-200 rounded p-2 w-full"
                     name="logo" />
-
-                <p class="text-red-500 text-xs error">
-                    @error('logo')
-                        {{ $message }}
-                    @enderror
-                </p>
+                <div class="img mr-6 my-6 w-full shadow-md">
+                    <img class="w-full object-cover"
+                        src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png') }}"
+                        alt="" />
+                </div>
             </div>
 
             <div class="mb-6">
@@ -99,8 +92,8 @@
                     Job Description
                 </label>
                 <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="5"
-                    placeholder="Include tasks, requirements, salary, etc">{{ old('description') }}</textarea>
-                <p class="text-red-500 text-xs error">
+                    placeholder="Include tasks, requirements, salary, etc">{{ $listing->description }}</textarea>
+                <p class="text-red-500 text-xs error" value="{{ old('company') }}">
                     @error('description')
                         {{ $message }}
                     @enderror
@@ -108,11 +101,13 @@
             </div>
 
             <div class="mb-6">
-                <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                    Create Gig
+                <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black text-lg">
+                    Update
                 </button>
 
-                <a href="/" class="text-black ml-4"> Back </a>
+                <a href="/listings/{{ $listing->id }}" class="text-black ml-4">
+                    Back
+                </a>
             </div>
         </form>
     </x-card>

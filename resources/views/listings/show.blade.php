@@ -4,15 +4,23 @@
 
 <x-layout>
     {{-- @include('partials._search') --}}
-    <a href="/" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
-    </a>
+    <x-card class="flex justify-between items-center mt-4 mx-4 p-2">
+        <a href="/" class="inline-block text-black bg-gray-300 rounded-lg px-4 py-2 shadow-sm">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+        <a href="/listings/{{ $listing->id }}/edit" class="bg-gray-300 rounded-lg px-4 py-2 shadow-sm">
+            <i class="fa-solid fa-pencil"></i> Edit
+        </a>
+    </x-card>
     <div class="mx-4">
         {{-- custom component --}}
         <x-card class="bg-gray-50 p-10">
             <div class="flex flex-col items-center justify-center text-center">
-                <img class="w-48 mr-6 mb-6"
-                    src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png') }}"
-                    alt="" />
+                <div class="img mr-6 my-6 w-1/2 shadow-md">
+                    <img class="w-full object-cover"
+                        src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('images/no-image.png') }}"
+                        alt="" />
+                </div>
 
                 <h3 class="text-2xl mb-2">{{ $listing->title }}</h3>
                 <div class="text-xl font-bold mb-4">{{ $listing->company }}</div>
@@ -32,15 +40,18 @@
                         <p>
                             {{ $listing->description }}
                         </p>
-                        <a href="mailto:{{ $listing->email }}"
-                            class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i
-                                class="fa-solid fa-envelope"></i>
-                            Contact Employer</a>
 
-                        <a href="{{ $listing->website }}" target="_blank"
-                            class="block bg-black text-white py-2 rounded-xl hover:opacity-80"><i
-                                class="fa-solid fa-globe"></i> Visit
-                            Website</a>
+                        <div class="btns flex items-center justify-center space-x-4">
+                            <a href="mailto:{{ $listing->email }}"
+                                class="block bg-laravel text-white py-2 px-4 rounded-xl hover:opacity-80"><i
+                                    class="fa-solid fa-envelope"></i>
+                                Contact Employer</a>
+
+                            <a href="{{ $listing->website }}" target="_blank"
+                                class="block bg-black text-white py-2 px-4 rounded-xl hover:opacity-80"><i
+                                    class="fa-solid fa-globe"></i> Visit
+                                Website</a>
+                        </div>
                     </div>
                 </div>
             </div>

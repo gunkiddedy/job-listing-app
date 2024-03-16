@@ -26,9 +26,9 @@
 </head>
 
 <body class="mb-48 max-w-screen-2xl mx-auto">
-    <nav class="flex justify-between items-center mb-4">
-        <a href="/"><img class="w-24" src="{{ asset('images/logo.png') }}" alt="" class="logo" /></a>
-        <ul class="flex space-x-6 mr-6 text-lg">
+    <nav class="flex justify-end items-center py-4">
+        {{-- <a href="/"><img class="w-24" src="{{ asset('images/logo.png') }}" alt="" class="logo" /></a> --}}
+        <ul class="flex space-x-6 text-lg">
             <li>
                 <a href="register.html" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>
             </li>
