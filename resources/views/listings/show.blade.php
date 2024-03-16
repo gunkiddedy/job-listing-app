@@ -8,9 +8,18 @@
         <a href="/" class="inline-block text-black bg-gray-300 rounded-lg px-4 py-2 shadow-sm">
             <i class="fa-solid fa-arrow-left"></i> Back
         </a>
-        <a href="/listings/{{ $listing->id }}/edit" class="bg-gray-300 rounded-lg px-4 py-2 shadow-sm">
-            <i class="fa-solid fa-pencil"></i> Edit
-        </a>
+        <div class="edit-delete flex items-center space-x-3">
+            <a href="/listings/{{ $listing->id }}/edit" class="bg-gray-300 rounded-lg px-4 py-2 shadow-sm">
+                <i class="fa-solid fa-pencil"></i> Edit
+            </a>
+            <form method="POST" action="/listings/{{ $listing->id }}">
+                @csrf
+                @method('DELETE')
+                <button class="bg-red-500 rounded-lg px-4 py-2 shadow-sm text-white">
+                    <i class="fa-solid fa-trash"></i> Delete
+                </button>
+            </form>
+        </div>
     </x-card>
     <div class="mx-4">
         {{-- custom component --}}
